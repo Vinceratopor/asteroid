@@ -7,6 +7,7 @@ Created on Fri Jul  7 13:29:51 2023
 """
 
 import random
+import math
 
 class Asteroid:
     def __init__(self, x, y, size):
@@ -14,13 +15,13 @@ class Asteroid:
         self.y = y  # Coordonnée y
         self.size = size  # Taille de l'astéroïde
 
-        self.speed_x = random.uniform(-2, 2)  # Vitesse de déplacement en x (aléatoire)
-        self.speed_y = random.uniform(-2, 2)  # Vitesse de déplacement en y (aléatoire)
+        self.speed = random.randint(1,4)
+
 
     def update(self, delta_time):
         # Mettre à jour la position en fonction de la vitesse et du temps écoulé
-        self.x += self.speed_x * delta_time
-        self.y += self.speed_y * delta_time
+        self.x += self.speed * delta_time * math.cos(math.radians(self.angle))
+        self.y += self.speed * delta_time * math.sin(math.radians(self.angle))
 
     def hit(self):
         # Méthode appelée lorsque l'astéroïde est touché
